@@ -1,7 +1,10 @@
+// built-in imports
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
+
+// internal imports
 import { MobileNav, NavItems } from ".";
 
 const Header = () => {
