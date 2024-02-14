@@ -82,7 +82,7 @@ export async function POST(req: Request) {
         },
       });
     }
-    return NextResponse.json({ message: "OK", user: newUser });
+    return NextResponse.json({ src: { message: "OK", user: newUser } });
   }
 
   //   user.update webhook event hadler section
