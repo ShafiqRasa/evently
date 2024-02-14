@@ -81,9 +81,8 @@ export async function POST(req: Request) {
           userId: newUser.id,
         },
       });
-
-      return NextResponse.json({ message: "OK", user: newUser });
     }
+    return NextResponse.json({ message: "OK", user: newUser });
   }
 
   //   user.update webhook event hadler section
@@ -100,9 +99,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "OK", user: updatedUser });
   }
 
+  console.log("hiii shafiq");
+
   // user.deleted webhook event handler section
   if (eventType === "user.deleted") {
     const { id } = evt.data;
+    console.log("clerk delete event: ", id);
+
     const deletedUser = await deleteUser(id!);
 
     return NextResponse.json({ message: "OK", user: deletedUser });
