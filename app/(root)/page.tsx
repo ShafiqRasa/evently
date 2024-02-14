@@ -4,6 +4,7 @@ import Image from "next/image";
 // internal imports
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { createUser } from "@/lib/actions/user.actions";
 
 export default function Home() {
   return (
