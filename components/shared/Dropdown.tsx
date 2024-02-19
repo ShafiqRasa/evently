@@ -1,6 +1,6 @@
 "use client";
 // built-in imports
-import { useState } from "react";
+import { startTransition, useState } from "react";
 // internal imports
 import {
   Select,
@@ -30,6 +30,8 @@ type DropdownProps = {
 const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
   const [categories, setcategories] = useState<ICategory[]>([]);
   const [newCategory, setNewCategory] = useState("");
+
+  const handleAddCategory = () => {};
 
   return (
     <Select onValueChange={onChangeHandler} value={value}>
@@ -65,7 +67,11 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={() => {}}>Add</AlertDialogAction>
+              <AlertDialogAction
+                onClick={() => startTransition(handleAddCategory)}
+              >
+                Add
+              </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
