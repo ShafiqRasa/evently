@@ -9,7 +9,7 @@ import mongoose from "mongoose";
  *  */
 let cached = (global as any).mongoose || { conn: null, promise: null };
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.NEXT_PUBLIC_MONGODB_URI;
 
 // Our Mongodb connection using Mongoose
 export const connectToDatabase = async (): Promise<typeof mongoose> => {
@@ -20,7 +20,12 @@ export const connectToDatabase = async (): Promise<typeof mongoose> => {
   if (!MONGODB_URI) throw new Error("MONGODB_URI is missing!");
 
   // for the initial time, we connect to our mongodb using mongoose.connect(db_uri)
-  cached.promise = cached.promise || mongoose.connect(MONGODB_URI);
+  cached.promise =
+    cached.promise ||
+    mongoose.connect(MONGODB_URI, {
+      dbName: "evently",
+      bufferCommands: false,
+    });
 
   cached.conn = await cached.promise;
   return cached.conn;

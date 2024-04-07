@@ -22,16 +22,23 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Input } from "../ui/input";
+import { createCategory } from "@/lib/actions/category.actions";
 
 type DropdownProps = {
   value?: string;
   onChangeHandler?: () => void;
 };
 const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
-  const [categories, setcategories] = useState<ICategory[]>([]);
+  const [categories, setCategories] = useState<ICategory[]>([]);
   const [newCategory, setNewCategory] = useState("");
 
-  const handleAddCategory = () => {};
+  const handleAddCategory = () => {
+    createCategory({
+      categoryName: newCategory.trim(),
+    }).then((category) => {
+      setCategories((prevState) => [...prevState, category]);
+    });
+  };
 
   return (
     <Select onValueChange={onChangeHandler} value={value}>
