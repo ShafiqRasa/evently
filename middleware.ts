@@ -7,15 +7,11 @@ export default authMiddleware({
   publicRoutes: [
     "/",
     "/event/:id",
-    "/api/webhook/clerk",
+    "/api/webhook",
     "/api/webhook/stripe",
     "/api/uploadthing",
   ],
-  ignoredRoutes: [
-    "/api/webhooks(.*)",
-    "/api/webhook/stripe",
-    "/api/uploadthing",
-  ],
+  ignoredRoutes: ["/api/webhooks", "/api/webhook/stripe", "/api/uploadthing"],
 });
 
 export const config = {
