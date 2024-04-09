@@ -60,8 +60,6 @@ export async function POST(req: Request) {
 
   /****** Here we are doing whatever we want, based off of eventType on Clerk ****/
 
-  console.log("webhook: ", eventType);
-
   //   user.create webhook event handler section
   if (eventType === "user.created") {
     const { id, email_addresses, image_url, first_name, last_name, username } =
@@ -75,8 +73,6 @@ export async function POST(req: Request) {
       lastName: last_name,
       photo: image_url,
     };
-
-    console.log("user:", user);
 
     const newUser = await createUser(user);
     if (!!newUser) {
@@ -102,8 +98,6 @@ export async function POST(req: Request) {
     const updatedUser = await updateUser(id, user);
     return NextResponse.json({ message: "OK", user: updatedUser });
   }
-
-  console.log("hiii shafiq");
 
   // user.deleted webhook event handler section
   if (eventType === "user.deleted") {
